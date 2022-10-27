@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         borderTopColor: "#333333",
         paddingVertical: 48,
-        borderTopWidth: 2,
+        borderTopWidth: 1,
         borderStyle: "solid",
     },
     image: {

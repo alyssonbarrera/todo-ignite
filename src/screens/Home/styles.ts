@@ -31,7 +31,17 @@ export const styles = StyleSheet.create({
         padding: 16,
         color: "#fff",
     },
-
+    inputFocus: {
+        backgroundColor: "#262626",
+        height: 54,
+        borderRadius: 6,
+        flex: 1,
+        marginRight: 4,
+        padding: 16,
+        color: "#fff",
+        borderWidth: 1,
+        borderColor: "#5E60CE",
+    },
     button: {
         height: 54,
         width: 54,
@@ -53,9 +63,15 @@ export const styles = StyleSheet.create({
     content_header_text_container: {
         flexDirection: "row",
     },
-    content_header_text: {
-        color: "#FFF",
+    content_header_textOne: {
+        color: "#4EA8DE",
         marginRight: 8,
+        fontWeight: "bold",
+    },
+    content_header_textTwo: {
+        color: "#8284FA",
+        marginRight: 8,
+        fontWeight: "bold",
     },
     content_header_textQtd: {
         backgroundColor: "#333333",

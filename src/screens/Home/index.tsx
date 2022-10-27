@@ -14,6 +14,7 @@ export function Home () {
 
     const [tasks, setTasks] = useState<Task[]>([]);
     const [taskText, setTaskText] = useState("");
+    const [inputFocus, setInputFocus] = useState(false);
 
     function handleAddTask() {
         const task = {
@@ -47,11 +48,15 @@ export function Home () {
                     />
                     <View style={styles.form}>
                         <TextInput
-                            style={styles.input}
+                            style={
+                                inputFocus ? styles.inputFocus : styles.input
+                            }
                             placeholder="Adicione uma nova tarefa"
                             placeholderTextColor={"#808080"}
                             onChangeText={setTaskText}
                             value={taskText}
+                            onFocus={() => setInputFocus(true)}
+                            onBlur={() => setInputFocus(false)}
                         />
                         <TouchableOpacity style={styles.button} onPress={handleAddTask}>
                             <Image source={require("../../../assets/plus.png")} />
@@ -62,7 +67,7 @@ export function Home () {
             <View style={styles.content}>
                 <View style={styles.content_header}>
                     <View style={styles.content_header_text_container}>
-                        <Text style={styles.content_header_text}>Criadas</Text>
+                        <Text style={styles.content_header_textOne}>Criadas</Text>
                         <Text style={styles.content_header_textQtd}>
                             {
                                 tasks.length
@@ -70,7 +75,7 @@ export function Home () {
                         </Text>
                     </View>
                     <View style={styles.content_header_text_container}>
-                        <Text style={styles.content_header_text}>Concluídas</Text>
+                        <Text style={styles.content_header_textTwo}>Concluídas</Text>
                         <Text style={styles.content_header_textQtd}>
                             {
                                 tasks.filter(task => task.done).length
