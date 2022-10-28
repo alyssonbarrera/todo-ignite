@@ -4,6 +4,9 @@ import { Card } from "../../components/Card";
 import { styles } from "./styles";
 import { Empty } from "../../components/Empty";
 
+import logoImg from "../../assets/logo.png";
+import plusImg from "../../assets/plus.png";
+
 type Task = {
     id: string;
     text: string;
@@ -43,7 +46,7 @@ export function Home () {
             <View style={styles.background}>
                 <View style={styles.header}>
                     <Image
-                        source={require("../../../assets/Logo.png")}
+                        source={logoImg}
                         style={styles.image}
                     />
                     <View style={styles.form}>
@@ -59,7 +62,7 @@ export function Home () {
                             onBlur={() => setInputFocus(false)}
                         />
                         <TouchableOpacity style={styles.button} onPress={handleAddTask}>
-                            <Image source={require("../../../assets/plus.png")} />
+                            <Image source={plusImg} />
                         </TouchableOpacity>
                     </View>
                 </View>
