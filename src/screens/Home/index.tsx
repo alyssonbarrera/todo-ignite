@@ -1,5 +1,5 @@
-import { Text, View, Image, TextInput, TouchableOpacity, FlatList } from "react-native";
-import { useState } from "react";
+import { Text, View, Image, TextInput, TouchableOpacity, FlatList, Alert } from "react-native";
+import { useRef, useState } from "react";
 import { Card } from "../../components/Card";
 import { styles } from "./styles";
 import { Empty } from "../../components/Empty";
@@ -19,14 +19,22 @@ export function Home () {
     const [taskText, setTaskText] = useState("");
     const [inputFocus, setInputFocus] = useState(false);
 
+    const newTaskInputRef = useRef<TextInput>(null);
+
     function handleAddTask() {
+
+        if(taskText.trim().length === 0) {
+            return Alert.alert("Nova Tarefa", "É necessário informar uma tarefa para ser adicionada");
+        }
+
         const task = {
             id: new Date().getTime().toString(),
             text: taskText,
             done: false
         }
 
-        setTasks([...tasks, task]);
+        newTaskInputRef.current?.blur();
+        setTasks([task, ...tasks]);
         setTaskText("");
     }
 
@@ -54,12 +62,14 @@ export function Home () {
                             style={
                                 inputFocus ? styles.inputFocus : styles.input
                             }
+                            ref={newTaskInputRef}
                             placeholder="Adicione uma nova tarefa"
                             placeholderTextColor={"#808080"}
                             onChangeText={setTaskText}
                             value={taskText}
                             onFocus={() => setInputFocus(true)}
                             onBlur={() => setInputFocus(false)}
+                            onSubmitEditing={handleAddTask}
                         />
                         <TouchableOpacity style={styles.button} onPress={handleAddTask}>
                             <Image source={plusImg} />
